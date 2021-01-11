@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <title>COM-250 Final Part III</title>
+    <style>
+        div {
+            margin-bottom: 30px;
+        }
+    </style>
+    <body>
+        <div class = "coffee">
+            <label>Coffee sizes:</label>
+            <input type="radio" id = "radSmall" name = "rad">Small</button>
+            <input type="radio" id = "radMedium" name = "rad">Medium</button>
+            <input type="radio" id = "radLarge" name = "rad">Large</button>
+        </div>
+        <div class = "bagel_toppings">
+            <label>Bagel toppings:</label>
+            <input type="checkbox" id="chkCC">Cream Cheese</input>
+            <input type="checkbox" id="chkButter">Butter</input>
+            <input type="checkbox" id="chkLox">Lox</input>
+            <input type="checkbox" id="chkJelly">Jelly</input>
+        </div>
+        <div class = "name">
+            <label for="username">Your Name: </label>
+            <input type="text" id = "username"></input>
+        </div>
+        <button id="submit" onclick="submitOrder();">Submit order</button>
+        <p id="out"></p>
+    </body>
+    <script>
+        function submitOrder(){
+            var order = "Client: " + document.getElementById("username").value;
+            var total = 0;
+            if (document.getElementById("radSmall").checked) {
+                total += 1.87
+                order += "<br>Coffee: small"
+            }
+            if (document.getElementById("radMedium").checked) {
+                total += 2.66
+                order += "<br>Coffee: medium"
+            }
+            if (document.getElementById("radLarge").checked) {
+                total += 3.32
+                order += "<br>Coffee: large"
+            }
+
+            var bagel_toppings = "Bagel toppings: "
+            
+            if (document.getElementById("chkCC").checked){
+                total += 3.77
+                total += 1.40
+                bagel_toppings += "Cream Cheese, "
+                
+            }
+            if (document.getElementById("chkButter").checked) {
+                total += 2.20
+                total += 1.40
+                bagel_toppings += "Butter, "
+                
+            }
+            if (document.getElementById("chkLox").checked) {
+                total += 4.50
+                total += 1.40
+                bagel_toppings += "Lox, "
+                
+            }
+            if (document.getElementById("chkJelly").checked) {
+                total += 1.12
+                total += 1.40
+                bagel_toppings += "Jelly, "
+                
+            }
+            if (bagel_toppings == "Bagel toppings: ")
+                bagel_toppings += "none"
+                
+                
+
+            order += "<br>" + bagel_toppings
+            
+            order += "<br>Cost: $" + total.toFixed(2)
+            document.getElementById("out").innerHTML = order
+
+        }
+    </script>
+</html>

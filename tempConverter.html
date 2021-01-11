@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <title>Temperature Converter</title>
+
+    <style>
+        h1 {
+            font-size: 40px;
+        }
+        p {
+            font-size: 20px;
+            margin-left: 100px;
+        }
+        #text {
+            padding: 4px;
+            margin-left: 45px;
+            font-size: 20px;
+            
+        }
+        .radio {
+            margin-top: 10px;
+            margin-left: 80px;
+            font-size: 25px;
+        }
+        #fahToCel {
+            margin-left: 30px;
+        }
+        #convert {
+            margin-top: 15px;
+            margin-left: 150px;
+            font-size: 20px;
+        }
+    </style>
+    <body>
+
+        <h1>Temperature Converter</h1>
+
+        <!-- text -->
+        <p>Please enter a temperature:</p>
+        <div>
+            <input type="text" id="text" size="30px">
+        </div>
+
+        <!-- radio buttons -->
+        <div class="radio">
+             <input type="radio" id="celToFah" name="conversion">°C to °F</input>
+             <input type="radio" id="fahToCel" name="conversion">°F to °C</input>
+        </div>
+
+        <!-- button -->
+        <div>
+            <button id="convert" onclick="doIt()">Convert</button>
+        </div>
+
+        <!-- output -->
+        <div>
+            <p id="out"></p>
+        </div>
+
+        <script>
+            function cToF (temp){
+                return (temp * 9/5) + 32.0;
+            }
+            function fToC (temp) {
+                return (temp - 32) * 5/9;
+            }
+            function doIt() {
+                if ( document.getElementById("celToFah").checked) {
+                    let input = document.getElementById("text").value;
+                    document.getElementById("out").innerHTML = input + " °C   =   " +
+                    cToF(input) + "°F."
+                }
+                if ( document.getElementById("fahToCel").checked) {
+                    let input = document.getElementById("text").value;
+                    document.getElementById("out").innerHTML = input + " °F   =   " +
+                    fToC(input) + "°C."
+                }
+            }   
+        </script>
+
+    </body>
+</html>

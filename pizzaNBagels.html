@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        HTML - Text Input
+    </title>
+
+    <style>
+        .header {
+            border: solid red 1px;
+            padding: 24px;
+            width: 70%;
+        }
+
+        .siz {
+            float: left;
+            padding: 12px;
+            border: solid red 2px;
+            width: 28%;
+            height: 300px;
+        }
+
+        .toppings {
+            float: left;
+            padding: 12px;
+            border: solid brown 2px;
+            width: 32%;
+            height: 300px;
+        }
+
+
+        #sub_order {
+            float: left;
+            width: 70%;
+            padding: 24px;
+            border: solid orange;
+        }
+
+        #bakery { 
+            float: left; 
+            width: 70%;
+            padding: 20px; 
+            border: solid green 3px;
+        }
+
+        #wantBagels  { 
+          
+            padding-right : 10px; 
+            color: rgb(100, 63, 14);
+            font-style: italic; 
+            font-size: large; 
+          
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!--    header -->
+    <div class="header">
+        <h3>Pizza Hut of Pittsburgh</h3>
+    </div>
+
+    <!-- size -->
+    <div class="siz">
+
+        <em>Pizza Size</em>
+        <p></p>
+        <input type="radio" id="radSmall" name="sizz" >Small</input>
+        <br>
+
+        <input type="radio" id="radMedium" name="sizz">Medium</input>
+        <br>
+
+        <input type="radio" id="radLarge" name="sizz">Large</input>
+        <br>
+    </div>
+
+    <div class="toppings">
+
+        <em>Toppings</em>
+        <p></p>
+
+        <script>
+
+            let topps = ["Meatballs", "Onions", "Olives", "Peppers",
+                "Anchovies", "Sausages", "Mushrooms", "Eggplants", 
+                "Pineapples"];
+
+            // create the input tags 
+
+            for (x of topps) {
+                let idd = x.substr(0, x.length - 1);
+
+                document.write('<input type="checkbox" id="chk' +
+                    idd + '">' + x + "</input><br>");
+            }
+        </script>
+        <!-- <p></p>
+        <input type="checkbox" id="chkMeatball">Meatballs</input>
+        <br>
+        <input type="checkbox" id="chkOnion">Onions</input>
+        <br>
+        <input type="checkbox" id="chkOlives">Olives</input>
+        <br>
+        <input type="checkbox" id="chkPeppers">Peppers</input>
+        <br>
+        <input type="checkbox" id="chkAnchovies">Anchovies</input>
+        <br> -->
+
+    </div>
+
+    <!-- numeric input -->
+
+    <div id="bakery"> 
+        <em>.. and from the bakery ... </em>
+        Bagels!!  
+        <br>
+
+        <span id="wantBagels">Number of bagels..</span>
+        <input type="number" id="numBagels" min=0 max=18 value="0"> 
+    </div>
+
+    <div id="sub_order">
+        Name
+        <input type="text" id="name">
+
+        <button id="doit" onclick="doit();">Submit</button>
+        <input type="reset">
+        <p id="orderInfo"></p>
+
+        
+
+
+
+    </div>
+
+
+
+    <script>
+        function doit() {
+            // code for the function goes here
+            let orderInfo = "Order info for: " + document.getElementById("name").value;
+            let fCost= 0; 
+            let cBagels = document.getElementById("numBagels").value;
+
+            // pizzasize 
+            if ( document.getElementById("radSmall").checked ){
+                orderInfo += "<br>- Small pizza ordered"; 
+                fCost = 8.14; 
+            }
+
+            else if ( document.getElementById("radMedium").checked ) {
+                orderInfo += "<br>- Medium pizza ordered"; 
+                fCost = 12.66; 
+            }
+            
+            else if ( document.getElementById("radLarge").checked ) {
+                orderInfo += "<br>- Large pizza ordered"; 
+                fCost = 21.78; 
+            } 
+
+
+            // toppings 
+            // if ( document.getElementById("chkMeatball").checked ){
+            //     orderInfo += "<br>- Meatball ordered<br>";
+            //     fCost += 1.57;
+            //     document.getElementById("chkMeatball").style.borderColor = "red";
+            // }
+                
+
+            // if ( document.getElementById("chkOnion").checked )
+            //     fCost += 1.57;
+
+            // if ( document.getElementById("chkOlive").checked )
+            //     fCost += 1.57;
+
+            //test
+          
+            let topps = ["Meatball", "Onion", "Olive", "Pepper",
+                "Anchovie", "Sausage", "Mushroom", "Eggplant", 
+                "Pineapple"];
+            
+            orderInfo += " with: ";
+            for (x of topps) {
+                if ( document.getElementById("chk" + x).checked) {
+                    orderInfo += x + "s, ";
+                    fCost += 1.57;
+                }
+                
+            }
+
+            // bagels 
+
+            orderInfo += "<br>- Number of bagels: " + cBagels + "<br>"; 
+
+            // add final cost 
+            fCost +=  2.15 * cBagels; 
+            fCost = fCost.toFixed(3); 
+            orderInfo += "Final Cost: $" + fCost  +"<br" ; 
+
+
+            document.getElementById("orderInfo").innerHTML = orderInfo; 
+            
+        }
+    </script>
+
+</body>
+
+</html>
